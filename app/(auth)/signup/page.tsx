@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-export default function Home() {
+export default function signup () {
   return (
     <div>
-      Hii there.
+      signup page.  
     </div>
   );
 }
