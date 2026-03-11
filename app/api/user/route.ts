@@ -8,6 +8,14 @@ const adapter = new PrismaPg({
 const client = new PrismaClient({
   adapter,
 });
+
+export async function GET() {
+    const data = await client.user.findFirst() ;
+    return Response.json({
+        data
+    })
+}
+
 export async function POST(req:NextRequest){
     //extract the body
     const body = await req.json() ;

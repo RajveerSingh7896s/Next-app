@@ -1,10 +1,26 @@
+
+import { PrismaClient } from "@/app/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import "dotenv/config";
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
+}); 
+const client = new PrismaClient({
+  adapter,
+});
+
 async function fetchData(){
-    await new Promise((r) => setTimeout(r,5000)) ;
+    const user = await client.user.findFirst() ;
+    return {
+        username:user?.username,
+        password:user?.password
+    }
 }
 
 export default async function() {
-    await fetchData() ;
+    const data = await fetchData();
     return (<div>
-        Hii there.
+        {data.username}
+        {data.password}
     </div>)
 }
