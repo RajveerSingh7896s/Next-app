@@ -1,16 +1,19 @@
 import { NextRequest } from "next/server";
-import { PrismaClient } from "@/app/generated/prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
-import "dotenv/config";
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
-}); 
-const client = new PrismaClient({
-  adapter,
-});
+// import { PrismaClient } from "@/app/generated/prisma/client";
+// import { PrismaPg } from "@prisma/adapter-pg";
+// import "dotenv/config";
+// const adapter = new PrismaPg({
+//   connectionString: process.env.DATABASE_URL,
+// }); 
+// const client = new PrismaClient({
+//   adapter,
+// });
+
+import client from "@/lib/prisma"
 
 export async function GET() {
     const data = await client.user.findFirst() ;
+    // console.log(data)
     return Response.json({
         data
     })
