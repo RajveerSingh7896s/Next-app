@@ -11,7 +11,7 @@
 // });
 
 import client from "@/lib/prisma"
-
+ 
 async function fetchData(){
     const user = await client.user.findFirst() ;
     return {
